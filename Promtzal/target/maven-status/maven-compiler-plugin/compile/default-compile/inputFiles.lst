@@ -1,2 +1,7 @@
-/home/dz/NetBeansProjects/Promtzal/src/main/java/main/Promtzal.java
-/home/dz/NetBeansProjects/Promtzal/src/main/java/receptor/Texto.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/main/Promtzal.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/receptor/Texto.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/token/LexemaToken.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/token/TipoToken.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/token/Token.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/token/TokenData.java
+/home/dz/NetBeansProjects/Practica-Promtzal/Promtzal/src/main/java/token/TokenRegistrado.java

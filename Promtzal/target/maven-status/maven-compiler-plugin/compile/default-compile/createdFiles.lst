@@ -1,2 +1,7 @@
+token/Token.class
+token/TokenData.class
+token/TipoToken.class
+token/LexemaToken.class
 receptor/Texto.class
 main/Promtzal.class
+token/TokenRegistrado.class
