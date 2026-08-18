@@ -74,9 +74,7 @@ public class LexemaToken {
             
             if(token.getToken().equals(lexema)){
                 
-                System.out.println("\n"+token.getTipo());
-                System.out.println(lexema);
-            
+             
                 return token.getTipo();
             
             }
@@ -101,7 +99,6 @@ public class LexemaToken {
             
            
             if(token.getToken().equals(Character.toString(lexema))){
-                
                 
             
                 return token.getTipo();

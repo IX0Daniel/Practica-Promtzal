@@ -23,12 +23,12 @@ public class Texto {
         List<Token> tokens = new ArrayList();
         
         
-        System.out.println("tamaño :" + entrada.length());
+         
         for(int i = columna; i < entrada.length(); i ++){
             
             caracter = entrada.charAt(i);
 
-            System.out.print("\nposición actual: " + i + " - " + caracter);
+            //System.out.print("\nposición actual: " + i + " - " + caracter);
 
             
             switch (caracter) {
@@ -84,13 +84,34 @@ public class Texto {
                     
                     }else{
                     
-                        //verificar caracteres especiales
                         
-                        System.out.println("caracter especial: " + caracter);
+                        
+                        //verificar caracteres especiales 
                         LexemaToken lexemaToken = new LexemaToken();
                         
-                        tokens.add(new Token(0, Character.toString(caracter), lexemaToken.analizarCaracter(caracter), fila, i));
-                                
+                        Token token = new Token(0, Character.toString(caracter), lexemaToken.analizarCaracter(caracter), fila, i);
+                        
+                        
+                               
+                        //TokenData tokenTemporal = new TokenData(token, fila, columna);
+
+                         
+                        
+                        
+                              
+                        if(token.getLexema().equals("\"")){
+                            
+                            System.out.println("se va a evaluar el comentario");
+                        
+                            analizarDirecivas = analizarComentario(token, entrada, fila, i);
+                            
+                            i = analizarDirecivas.getColumna();
+                            
+                            
+                        
+                        }
+                        tokens.add(token);
+                        
                         continue;
                     
                     }
@@ -135,7 +156,7 @@ public class Texto {
             caracter = entrada.charAt(i);
             
             if(caracter == 32){
-                System.out.println("caracter vacio");
+                //System.out.println("caracter vacio");
                 break;
             }
             
@@ -145,7 +166,6 @@ public class Texto {
             
             posicionFinal = i;
             
-            System.out.println("posición actual: " + posicionFinal + " - " + caracter);
     
 
         }
@@ -196,9 +216,7 @@ public class Texto {
         }
         
         
-        //verificar si después de letra hay un salto de línea
-        
-        
+        //verificar si después de letra hay un salto de línea        
         for(int i = posicion; i < entrada.length(); i ++){
         
             
@@ -255,6 +273,41 @@ public class Texto {
     private TokenData analizarCaracter(char lexema){
         return null;
     }
+
+    private TokenData analizarComentario(Token token, String entrada, int fila, int columna) {
+        
+    
+        String lexema = token.getLexema();
+        System.out.println(" el lexema es: " + lexema);
+        
+        lexema = "";
+        
+        for(int i= columna; i<entrada.length(); i++){
+                             
+        
+            lexema = lexema + entrada.charAt(i);
+            
+            System.out.println("Lexema analizado; " + lexema);
+            
+            if(Character.toString(entrada.charAt(i)).equals("\"") && lexema.length() >1){
+                //en este caso necesito devolcer un nuevo tokenData
+                
+                token.setLexema(lexema);
+                
+                return new TokenData(token, fila, i);
+            
+            }
+            
+            
+        
+            
+        }
+        
+        
+        token.setTipoToken(TipoToken.ERROR);
+        
+        return new TokenData(token, fila, entrada.length());
+    }
     
     
-} 
+}
