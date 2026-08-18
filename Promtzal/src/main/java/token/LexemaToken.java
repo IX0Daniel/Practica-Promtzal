@@ -11,11 +11,13 @@ public class LexemaToken {
     
    private List<TokenRegistrado> tokens;
    private List<TokenRegistrado> directivas;
+   private List<TokenRegistrado> delimitaadores;
 
     public LexemaToken() {
         
         tokens = new ArrayList<>();
         directivas = new ArrayList<>();
+        delimitaadores = new ArrayList<>();
         
         tokens();
         
@@ -49,13 +51,69 @@ public class LexemaToken {
         tokens.add(new TokenRegistrado("PREGUNTAR", TipoToken.CONECTOR));
         tokens.add(new TokenRegistrado("COMO", TipoToken.CONECTOR));
         tokens.add(new TokenRegistrado("->", TipoToken.CONECTOR));
+        
+        
+        delimitaadores.add(new TokenRegistrado("{", TipoToken.DELIMITADOR));
+        delimitaadores.add(new TokenRegistrado("}", TipoToken.DELIMITADOR));
+        delimitaadores.add(new TokenRegistrado("(", TipoToken.DELIMITADOR));
+        delimitaadores.add(new TokenRegistrado(")", TipoToken.DELIMITADOR));
+        delimitaadores.add(new TokenRegistrado("\"", TipoToken.DELIMITADOR));
+        delimitaadores.add(new TokenRegistrado(",", TipoToken.DELIMITADOR));
+        
+        
 
 
         
     }    
     
     
+    public TipoToken analizarToken(String lexema){
     
+        for(TokenRegistrado token: tokens){
+            
+            
+            if(token.getToken().equals(lexema)){
+                
+                System.out.println("\n"+token.getTipo());
+                System.out.println(lexema);
+            
+                return token.getTipo();
+            
+            }
+        
+        
+        }
+        
+        //en este caso se verificará si cumple para ser un identificador
+        
+        
+        
+         
+        
+        
+        return TipoToken.IDENTIFICADOR;
+    }
+    
+    
+    public TipoToken analizarCaracter(char lexema){
+    
+        for(TokenRegistrado token: delimitaadores){
+            
+           
+            if(token.getToken().equals(Character.toString(lexema))){
+                
+                
+            
+                return token.getTipo();
+            
+            }
+        
+        
+        }
+        return TipoToken.ERROR;
+        
+    
+    }
     
     
     

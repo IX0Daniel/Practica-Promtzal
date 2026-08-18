@@ -3,5 +3,7 @@ token/TokenData.class
 token/TipoToken.class
 token/LexemaToken.class
 receptor/Texto.class
+main/Main.class
+main/LectorArchivo.class
 main/Promtzal.class
 token/TokenRegistrado.class

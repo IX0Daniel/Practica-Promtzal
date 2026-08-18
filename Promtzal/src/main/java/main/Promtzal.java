@@ -1,30 +1,65 @@
- package main;
+package main;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import receptor.Texto;
 import token.Token;
 
-/** 
+/**
  * @author dz
  */
 public class Promtzal {
+    
+    
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    private String textoEntrada;
+    private List<String> lineas;
+
+    public Promtzal() {
+        
+        lineas = new ArrayList<>();
+        inicioAnalizador();
+        
+    }
+    
+    
+    
+    
+    public void inicioAnalizador(){
+    
+        List<Token> tokens = new ArrayList<>();
+        
+        try {
+            lineas = new LectorArchivo().leerArchivo();
+        } catch (IOException ex) {
+            System.getLogger(Promtzal.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         
         
         Texto tokenizador = new Texto();
         
-        List<Token> analizador = tokenizador.analizador(" @rol @ @rol @@ @modelo ppppq @formato ", 0, 0);
+        int contadorLinea = 0;
         
-        for(Token tokens: analizador){
+        for (String linea: lineas) {
+            tokens.addAll(tokenizador.analizador(linea, contadorLinea, 0));
+            
+            
+        }
         
-            System.out.println("tipo: " + tokens.getTipoToken());
-            System.out.println("lexema: " + tokens.getLexema());
-            System.out.println("columna: " + tokens.getColumna());
+        
+         
+        for(Token token: tokens){
+
+                        
+            System.out.println("\nlexema: " + token.getLexema());                    
+            System.out.println("tipo: " + token.getTipoToken());
+            System.out.println("columna: " + token.getColumna());
+            System.out.println("fila: " + token.getFila());
             
         
         }
-                
+    
     }
+    
 }
