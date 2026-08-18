@@ -82,9 +82,7 @@ public class Texto {
 
                         
                     
-                    }else{
-                    
-                        
+                    }else{ 
                         
                         //verificar caracteres especiales 
                         LexemaToken lexemaToken = new LexemaToken();
@@ -93,11 +91,7 @@ public class Texto {
                         
                         
                                
-                        //TokenData tokenTemporal = new TokenData(token, fila, columna);
-
-                         
-                        
-                        
+                        //TokenData tokenTemporal = new TokenData(token, fila, columna); 
                               
                         if(token.getLexema().equals("\"")){
                             
@@ -106,24 +100,18 @@ public class Texto {
                             analizarDirecivas = analizarComentario(token, entrada, fila, i);
                             
                             i = analizarDirecivas.getColumna();
-                            
-                            
-                        
+                              
                         }
                         tokens.add(token);
                         
                         continue;
                     
-                    }
-                
+                    } 
                     break;
 
             }
             
-        }
-        
-         
-        
+        } 
         return tokens;
     }
         
@@ -269,10 +257,7 @@ public class Texto {
         }
         return false;
     }
-    
-    private TokenData analizarCaracter(char lexema){
-        return null;
-    }
+  
 
     private TokenData analizarComentario(Token token, String entrada, int fila, int columna) {
         
@@ -304,6 +289,7 @@ public class Texto {
         }
         
         
+        token.setLexema(lexema);
         token.setTipoToken(TipoToken.ERROR);
         
         return new TokenData(token, fila, entrada.length());
